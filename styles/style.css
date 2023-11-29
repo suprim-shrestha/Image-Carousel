@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-container {
+  max-width: 900px;
+  width: 90%;
+  height: 506px;
+  margin: 100px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-image-wrapper {
+  display: flex;
+  position: absolute;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#btn-left {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  padding: 5px;
+}
+
+#btn-right {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 5px;
+}
