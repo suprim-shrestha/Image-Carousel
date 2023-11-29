@@ -1,5 +1,6 @@
 const imageWrapper = document.getElementById("image-wrapper");
 const container = document.getElementById("carousel-container");
+const navBtns = document.getElementById("nav-btns");
 const btnLeft = document.getElementById("btn-left");
 const btnRight = document.getElementById("btn-right");
 const imgClass = document.getElementsByClassName("image");
@@ -12,16 +13,16 @@ let maxImages = imgClass.length;
 btnLeft.addEventListener("click", () => {
   activeImage--;
   if (activeImage < 1) activeImage = maxImages;
-  console.log(activeImage);
-  setPosition();
-  changePosition();
+  navBtn[activeImage - 1].setActive();
+  //   setPosition();
+  //   changePosition();
 });
 btnRight.addEventListener("click", () => {
   activeImage++;
   if (activeImage > maxImages) activeImage = 1;
-  console.log(activeImage);
-  setPosition();
-  changePosition();
+  navBtn[activeImage - 1].setActive();
+  //   setPosition();
+  //   changePosition();
 });
 
 const setPosition = () => {
@@ -46,6 +47,36 @@ const changePosition = () => {
 };
 
 window.addEventListener("resize", () => {
+  container.style.height = (container.clientWidth * 9) / 16 + "px";
   setPosition();
   changePosition();
+});
+
+class NavBtn {
+  constructor(index) {
+    this.index = index;
+    this.element = document.createElement("div");
+    this.element.classList.add("nav-btn");
+    navBtns.appendChild(this.element);
+    this.element.addEventListener("click", () => {
+      this.setActive();
+    });
+  }
+
+  setActive() {
+    activeImage = this.index + 1;
+    navBtn.forEach((value) => {
+      value.element.classList.remove("nav-btn--active");
+    });
+    this.element.classList.add("nav-btn--active");
+    setPosition();
+    changePosition();
+  }
+}
+
+let navBtn = [];
+
+[...imgClass].forEach((value, index) => {
+  navBtn.push(new NavBtn(index));
+  navBtn[0].element.classList.add("nav-btn--active");
 });
