@@ -11,18 +11,12 @@ let position = 0;
 let maxImages = imgClass.length;
 
 btnLeft.addEventListener("click", () => {
-  activeImage--;
-  if (activeImage < 1) activeImage = maxImages;
+  if (--activeImage < 1) activeImage = maxImages;
   navBtn[activeImage - 1].setActive();
-  //   setPosition();
-  //   changePosition();
 });
 btnRight.addEventListener("click", () => {
-  activeImage++;
-  if (activeImage > maxImages) activeImage = 1;
+  if (++activeImage > maxImages) activeImage = 1;
   navBtn[activeImage - 1].setActive();
-  //   setPosition();
-  //   changePosition();
 });
 
 const setPosition = () => {
