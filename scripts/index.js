@@ -40,6 +40,11 @@ const changePosition = () => {
   }
 };
 
+setInterval(() => {
+  if (++activeImage > maxImages) activeImage = 1;
+  navBtn[activeImage - 1].setActive();
+}, 5000);
+
 window.addEventListener("resize", () => {
   container.style.height = (container.clientWidth * 9) / 16 + "px";
   setPosition();
